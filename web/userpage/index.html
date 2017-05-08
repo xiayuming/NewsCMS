@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="zh-cn"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="zh-cn"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="zh-cn"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]>&lt;!&ndash;>
+<html lang="zh-cn">
+<!--<![endif]-->
+<head>
+    <title>今日头条</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="今日头条，新闻网站">
+    <meta name="description" content="家事国事天下事事事关心">
+    <meta name="author" content="郭峰">
+    <!-- Mobile Specific Meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--All Css-->
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <!--轮播图 滑块：设置、动态字、静态字-->
+    <link rel="stylesheet" href="../css/settings.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/dynamic-captions.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/static-captions.css" type="text/css"/>
+    <!--Jquery-->
+    <script language="javascript" type="text/javascript" src="../js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+
+</head>
+<body>
+<script>
+    function jumpcontent(newsId) {
+        url = "content.html?newsId=" + newsId;
+        window.location.href = url;
+    }
+</script>
+<div class="body-innerwrapper">
+    <!--顶部栏-->
+    <section id="sp-top-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 top-base no-padding">
+                    <div class="col-sm-6 top-block">
+                        <p>
+                            <i class="fa fa-bell"></i>
+                            好新闻，&nbsp;尽在今日头条！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+    </script>
+    <!--logo栏-->
+    <section id="sp-top-bar">
+        <div class="container">
+            <div class="row">
+                <div id="sp-logo" class="col-sm-3 col-md-3">
+                    <a class="logo main-heading" href="">
+                        <img class="sp-default-logo " src="/images/logo.png" alt="今日头条">
+                    </a>
+                </div>
+                <div id="sp-top2" class="col-sm-9 col-md-9 hidden-xs">
+                    <ul class="sp-contact-info">
+                        <li class="sp-contact-time"><i class="fa fa-clock-o"></i>
+                            <p class="contact-content">
+                                <span class="title">当前时间</span>
+                                <span class="time" id="time">0000/00/00 00:00</span>
+                                <script>
+                                    showTime();
+                                    function showTime() {
+                                        var today = new Date();
+                                        var year = today.getFullYear();
+                                        var month = today.getMonth() + 1;
+                                        var day = today.getDate();
+                                        var hours = today.getHours();
+                                        var minutes = today.getMinutes();
+                                        var seconds = today.getSeconds();
+                                        //如果是单个数，则前面补0
+                                        month = month < 10 ? "0" + month : month;
+                                        day = day < 10 ? "0" + day : day;
+                                        hours = hours < 10 ? "0" + hours : hours;
+                                        minutes = minutes < 10 ? "0" + minutes : minutes;
+                                        seconds = seconds < 10 ? "0" + seconds : seconds;
+                                        var str = year + "/" + month + "/" + day + "/ " + hours + ":" + minutes + ":" + seconds;
+                                        document.getElementById("time").innerHTML = str;
+                                        window.setTimeout("showTime()", 1000);
+                                    }
+                                </script>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--轮播图-->
+    <section id="banner">
+        <div class="container-fluid">
+            <div class="row">
+                <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container"
+                     style="margin:0px auto;background-color:#E9E9E9;padding:0px;margin-top:0px;margin-bottom:0px;max-height:550px;">
+                    <div id="rev_slider_1_1" class="rev_slider fullwidthabanner"
+                         style="display:none;max-height:550px;height:550px;">
+                        <ul class="headnewsul">
+                            <!--<li data-transition="random" data-slotamount="7" data-masterspeed="300"-->
+                            <!--data-saveperformance="off" data-title="Slide">-->
+                            <!--<img src="../images/demo.jpg"-->
+                            <!--data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">-->
+                            <!--<div class="tp-caption medium_text sfb tp-resizeme" data-x="50" data-y="470"-->
+                            <!--data-speed="300" data-start="500" data-easing="Sine.easeInOut" data-splitin="none"-->
+                            <!--data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"-->
+                            <!--data-endspeed="300"-->
+                            <!--style="z-index: 6; max-width: auto; max-height: auto; white-space: nowrap;">-->
+                            <!--<a href='content.html' class='sppb-btn sppb-btn-primary sppb-btn-'>查看</a>-->
+                            <!--</div>-->
+                            <!--<div class="tp-caption smalltext sfr tp-resizeme" data-x="50" data-y="400"-->
+                            <!--data-speed="300" data-start="500" data-easing="Power3.easeInOut"-->
+                            <!--data-splitin="none"-->
+                            <!--data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"-->
+                            <!--data-endspeed="300"-->
+                            <!--style="z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;">-->
+                            <!--王金磊被华东师范大学录取-->
+                            <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <div class="tp-bannertimer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        findhead();
+        function findhead() {
+            (function ($) {
+                $.ajax({
+                    type: "post",
+                    url: "index_findHeadNews.action",
+                    data: {
+                        //提交的数据
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        //mydata[i].newsImg
+                        var mydata = eval(data);
+                        $('.headnewsul li').remove();
+                        for (var i in mydata) {
+                            $(".headnewsul").append(
+                                "<li data-transition='random' data-slotamount='7' data-masterspeed='300' "
+                                + "data-saveperformance='off'data-title='Slide'> <img src='"
+                                + "../img/" + mydata[i].headImg
+                                // +"../images/demo.jpg"
+                                + "'data-bgposition='center center' data-bgfit='cover' data-bgrepeat='no-repeat'>"
+                                + "<div class='tp-caption medium_text sfb tp-resizeme' data-x='50' data-y='470'"
+                                + "data-speed='300' data-start='500' data-easing='Sine.easeInOut' data-splitin='none'"
+                                + "data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' data-endspeed='300'"
+                                + "style='z-index: 6; max-width: auto; max-height: auto; white-space: nowrap;'>"
+                                + "<a  href='content.html?newsId="
+                                + mydata[i].newsPO.newsId
+                                + "' class='sppb-btn sppb-btn-primary sppb-btn-'>查看</a></div>"
+                                + " <div class='tp-caption smalltext sfr tp-resizeme' data-x='50' data-y='400'"
+                                + "data-speed='300' data-start='500' data-easing='Power3.easeInOut' data-splitin='none'"
+                                + "data-splitout='none' data-elementdelay='0.1' data-endelementdelay='0.1' data-endspeed='300'"
+                                + "style='z-index: 7; max-width: auto; max-height: auto; white-space: nowrap;'>"
+                                + mydata[i].headTitle
+                                + "</div></li>"
+                            );
+                        }
+                    },
+                    error: function (data) {
+                        alert("Ajax请求崩了!");
+                    }
+                });
+            })(jQuery);
+        }
+
+    </script>
+    <!--====== 新闻一栏==========-->
+    <section>
+        <div class="ho-popu tb-space pad-bot-redu">
+            <div class="rows container">
+
+                <div class="spe-title">
+                    <h2>焦点 <span>头条</span> 战略</h2>
+                    <div class="title-line">
+                        <div class="tl-1"></div>
+                        <div class="tl-2"></div>
+                        <div class="tl-3"></div>
+                    </div>
+                    <p>家事、国事、天下事，事事关心</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="hot-page2-hom-pre-head">
+                        <h4><span>社会</span>新闻</h4>
+                    </div>
+                    <div class="hot-page2-hom-pre">
+                        <ul class="soul">
+                            <!--举例条目-->
+                            <!--<li>-->
+                            <!--<a href="#">-->
+                            <!--<div class="hot-page2-hom-pre-2">-->
+                            <!--<h5>内容</h5>-->
+                            <!--</div>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                        </ul>
+                        <a href="#">
+                            <div class="hot-page2-hom-pre-2" onclick="findsoci()">
+                                <h5><a target="_parent" class="simple">更多<i
+                                        class="fa fa-refresh"></i>
+                                </a></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        findsoci();
+                        function findsoci() {
+                            (function ($) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "index_findSocietyNews.action",
+                                    data: {
+                                        //提交的数据
+                                    },
+                                    dataType: "json",
+                                    cache: false,
+                                    success: function (data) {
+                                        var mydata = eval(data);
+                                        $('.soul li').remove();
+                                        for (var i in mydata) {
+                                            $(".soul").append(
+                                                "<li><div class='hot-page2-hom-pre-2' onclick='jumpcontent("
+                                                + mydata[i].newsId +
+                                                ")'><h5>"
+                                                + mydata[i].newsTitle
+                                                + "</h5></div></li>"
+                                            );
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("Ajax请求崩了!");
+                                    }
+                                });
+                            })(jQuery);
+                        }
+                    </script>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="hot-page2-hom-pre-head">
+                        <h4>新闻<span>热评</span>榜<i class="fa fa-fire"></i></h4>
+                    </div>
+                    <div class="hot-page2-hom-pre">
+                        <ul class="hotul">
+                            <!--举例条目-->
+                            <!--<li>-->
+                            <!--<a href="#">-->
+                            <!--<div class="hot-page2-hom-pre-2">-->
+                            <!--<h5>-->
+                            <!--内容-->
+                            <!--<i class="fa fa-comment"></i><span class="comment"> 6 </span>-->
+                            <!--<i class="fa fa-calendar"></i><span class="date"> 2017/5/1</span>-->
+                            <!--</h5>-->
+                            <!--</div>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                        </ul>
+                        <a href="#">
+                            <div class="hot-page2-hom-pre-2" onclick="findhot()">
+                                <h5><a target="_parent" class="simple">更多<i class="fa fa-refresh"></i>
+                                </a></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        findhot();
+                        function findhot() {
+                            (function ($) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "index_findHotNews.action?time=new Date()",
+                                    data: {
+                                        //提交的数据
+                                    },
+                                    dataType: "json",
+                                    cache: false,
+                                    success: function (data) {
+                                        var mydata = eval(data);
+                                        $('.hotul li').remove();
+                                        for (var i in mydata) {
+                                            $(".hotul").append(
+                                                "<li><div class='hot-page2-hom-pre-2' onclick='jumpcontent("
+                                                + mydata[i].newsId
+                                                + ")'><h5><i class='fa fa-calendar'></i><span class='date'>&nbsp;"
+                                                + formatdate(mydata[i].newsDate)
+                                                + "</span>&nbsp;&nbsp;&nbsp;"
+                                                + mydata[i].newsTitle
+                                                + "</h5></div></li>"
+                                            );
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("Ajax请求崩了");
+                                    }
+                                });
+                            })(jQuery);
+                        }
+                        function formatdate(value) {
+                            var JsonDateValue = new Date(value.time);
+                            return JsonDateValue.toLocaleDateString();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--====== 新闻二栏 ==========-->
+    <section>
+        <div class="ho-popu tb-space pad-bot-redu">
+            <div class="rows container">
+
+                <div class="col-md-4">
+                    <div class="hot-page2-hom-pre-head">
+                        <h4><span>科技</span>新闻</h4>
+                    </div>
+                    <div class="hot-page2-hom-pre">
+                        <ul class="techul">
+                        </ul>
+                        <a href="#">
+                            <div class="hot-page2-hom-pre-2" onclick="findtech();">
+                                <h5><a target="_parent" class="simple">更多<i class="fa fa-refresh"></i>
+                                </a></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        findtech();
+                        function findtech() {
+                            (function ($) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "index_findTechNews.action?time=new Date()",
+                                    data: {
+                                        //提交的数据
+                                    },
+                                    dataType: "json",
+                                    cache: false,
+                                    success: function (data) {
+                                        var mydata = eval(data);
+                                        $('.techul li').remove();
+                                        for (var i in mydata) {
+                                            $(".techul").append(
+                                                "<li><div class='hot-page2-hom-pre-2' onclick='jumpcontent("
+                                                + mydata[i].newsId +
+                                                ")'><h5>"
+                                                + mydata[i].newsTitle
+                                                + "</h5></div></li>"
+                                            );
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("Ajax请求崩了");
+                                    }
+                                });
+                            })(jQuery);
+                        }
+
+                    </script>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="hot-page2-hom-pre-head">
+                        <h4><span>国际</span>新闻</h4>
+                    </div>
+                    <div class="hot-page2-hom-pre">
+                        <ul class="inteul">
+                        </ul>
+                        <a href="#">
+                            <div class="hot-page2-hom-pre-2" onclick="findinte();">
+                                <h5><a target="_parent" class="simple">更多<i class="fa fa-refresh"></i>
+                                </a></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        findinte();
+                        function findinte() {
+                            (function ($) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "index_findInteNews.action?time=new Date()",
+                                    data: {
+                                        //提交的数据
+                                    },
+                                    dataType: "json",
+                                    cache: false,
+                                    success: function (data) {
+                                        var mydata = eval(data);
+                                        $('.inteul li').remove();
+                                        for (var i in mydata) {
+                                            $(".inteul").append(
+                                                "<li><div class='hot-page2-hom-pre-2' onclick='jumpcontent("
+                                                + mydata[i].newsId +
+                                                ")'><h5>"
+                                                + mydata[i].newsTitle
+                                                + "</h5></div></li>"
+                                            );
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("Ajax请求崩了");
+                                    }
+                                });
+                            })(jQuery);
+                        }
+
+                    </script>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="hot-page2-hom-pre-head">
+                        <h4><span>军事</span>新闻</h4>
+                    </div>
+                    <div class="hot-page2-hom-pre">
+                        <ul class="miliul">
+                        </ul>
+                        <a href="#">
+                            <div class="hot-page2-hom-pre-2" onclick="findmili();">
+                                <h5><a target="_parent" class="simple">更多<i class="fa fa-refresh"></i>
+                                </a></h5>
+                            </div>
+                        </a>
+                    </div>
+                    <script type="text/javascript">
+                        findmili();
+                        function findmili() {
+                            (function ($) {
+                                $.ajax({
+                                    type: "post",
+                                    url: "index_findMiliNews.action?time=new Date()",
+                                    data: {
+                                        //提交的数据
+                                    },
+                                    dataType: "json",
+                                    cache: false,
+                                    success: function (data) {
+                                        var mydata = eval(data);
+                                        $('.miliul li').remove();
+                                        for (var i in mydata) {
+                                            $(".miliul").append(
+                                                "<li><div class='hot-page2-hom-pre-2' onclick='jumpcontent("
+                                                + mydata[i].newsId +
+                                                ")'><h5>"
+                                                + mydata[i].newsTitle
+                                                + "</h5></div></li>"
+                                            );
+                                        }
+                                    },
+                                    error: function (data) {
+                                        alert("Ajax请求崩了");
+                                    }
+                                });
+                            })(jQuery);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--底部：信息-->
+    <section id="sp-bottom">
+        <div class="container">
+            <div class="row">
+                <div id="sp-bottom1" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title">联系方式</h3>
+                    <ul class="textwidget">
+                        <li><i class="fa fa-map-marker"><i class="hidden">地址</i></i>
+                            <span class="wsAddress"></span>
+                        </li>
+                        <li><i class="fa fa-envelope"></i> <span class="wsEmail"></span></li>
+                        <li><i class="fa fa-qq"></i> <span class="wsQq"></span></li>
+                        <li><i class="fa fa-phone"></i> <span class="wsPhone"></span></li>
+                    </ul>
+                </div>
+
+                <div id="sp-bottom2" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title">关键词</h3>
+                    <div class="tagspopular">
+                        <ul class="sitekeyul">
+                        </ul>
+                    </div>
+                </div>
+                <div id="sp-bottom3" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title wsTitle"></h3>
+                    <ul class="textwidget">
+                        <li><i class="fa fa-newspaper-o"></i><span class="wsSite"></span></li>
+                        <li><i class="fa fa-book"></i><span class="wsDes"></span></li>
+                        <li><i class="fa fa-github"></i><span class="wsAdmin"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--底部：版权-->
+    <footer id="sp-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <p><span class="wsFootor"></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        findfooter();
+        function findfooter() {
+            (function ($) {
+                $.ajax({
+                    type: "post",
+                    url: "footer_findFooter.action",
+                    data: {
+                        //提交的数据
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        var mydata = eval(data);
+                        $('.wsTitle').html(mydata[0].wsTitle);
+                        $('.wsSite').html(mydata[0].wsSite);
+                        $('.wsDes').html(mydata[0].wsDes);
+                        $('.wsAdmin').html(mydata[0].wsAdmin);
+                        $('.wsPhone').html(mydata[0].wsPhone);
+                        $('.wsQq').html(mydata[0].wsQq);
+                        $('.wsEmail').html(mydata[0].wsEmail);
+                        $('.wsAddress').html(mydata[0].wsAddress);
+                        $('.wsFootor').html(mydata[0].wsFootor);
+                        var keyarr = mydata[0].wsKey.split('，');
+                        for (var i in keyarr) {
+                            $(".sitekeyul").append(
+                                "<li><a target='_parent'>"
+                                + keyarr[i]
+                                + "</a></li>"
+                            );
+                        }
+                    },
+                    error: function (data) {
+                        alert("Ajax请求崩了");
+                    }
+                });
+            })(jQuery);
+        }
+    </script>
+
+    <!--All Script-->
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
+    <script src="../js/banner.js" type="text/javascript"></script>
+</div>
+</body>
+</html>
