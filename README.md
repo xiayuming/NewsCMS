@@ -16,11 +16,12 @@
 
 客户端截图
 ------ 
-<img src="https://github.com/iamguofeng/NewsCMS/预览截图/1.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im2.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im3.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im4.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im5.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im6.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im7.png" height="700" width="400" />
-<img src="https://github.com/iamguofeng/IMDemo/raw/master/app-image/im8.png" height="700" width="400" />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/1.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/2.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/3.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/4.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/5.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/6.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/7.png"  />
+<img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/8.png"  />
+
