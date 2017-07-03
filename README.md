@@ -14,14 +14,25 @@
 * CSDN: http://blog.csdn.net/plain_maple
 
 
-客户端截图
+前端页面截图
 ------ 
+* 今日头条
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/1.png"  />
+* 新闻热评榜
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/2.png"  />
+* 分类新闻
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/3.png"  />
+* 页脚信息
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/4.png"  />
+* 新闻详情
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/5.png"  />
+* 评论区域
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/6.png"  />
+
+后台页面截图（不完全）
+------ 
+* 站长统计
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/7.png"  />
+* 新闻管理
 <img src="https://github.com/iamguofeng/NewsCMS/raw/master/预览截图/8.png"  />
 
