@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html class="ie ie6" lang="zh-cn"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="ie ie7" lang="zh-cn"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="ie ie8" lang="zh-cn"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]>&lt;!&ndash;>
+<html lang="zh-cn">
+<!--<![endif]-->
+<head>
+    <title>今日头条-内容详情</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="今日头条，新闻网站">
+    <meta name="description" content="家事国事天下事事事关心">
+    <meta name="author" content="郭峰">
+    <!-- Mobile Specific Meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--All Css-->
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login-register.css" type="text/css"/>
+    <!--Jquery-->
+    <script src="../js/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../js/login-register.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="body-innerwrapper">
+    <!--顶部栏-->
+    <section id="sp-top-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 top-base no-padding">
+                    <div class="col-sm-6 top-block">
+                        <p>
+                            <i class="fa fa-bell"></i>
+                            好新闻，&nbsp;尽在今日头条！
+                        </p>
+                    </div>
+                    <div class="col-sm-6 top-block text-right">
+                        <ul class="social-icons">
+                            <li class="userName"></li>
+                            <li><a target="_blank" href="javascript:void(0)" onclick="openLoginModal();">
+                                <i class="fa fa-sign-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--======导航 ==========-->
+    <section>
+        <div class="rows inner_banner">
+            <div class="container">
+                <h2><span>最赏心悦目的 -</span> 今日头条</h2>
+                <ul class="breadcrumb">
+
+                    <li><span>您正在浏览:</span><a href="index.html">主页</a>
+                    </li>
+                    <li class="active">新闻内容</li>
+                </ul>
+                <p>风声雨声读书声声声入耳，家事国事天下事事事关心。</p>
+            </div>
+        </div>
+    </section>
+
+    <!--====== 部分：内容 ==========-->
+    <section>
+        <div class="rows inn-page-bg com-colo">
+            <div class="container inn-page-con-bg tb-space pad-bot-redu-5" id="inner-page-title">
+                <!-- 标题和描述 -->
+                <div class="spe-title col-md-12">
+                    <h2 class="newsTitle"></h2>
+                    <div class="title-line">
+                        <div class="tl-1"></div>
+                        <div class="tl-2"></div>
+                        <div class="tl-3"></div>
+                    </div>
+                    <p class="newsKey"></p>
+                </div>
+                <!--===== 内容 ======-->
+                <div class="rows">
+                    <div class="posts">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <img class="newsImg">
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h5>
+                                <span class="post_author">作者: <span class="newsAuthor"></span></span>
+                                <span class="post_date">时间: <span class="newsDate"></span></span>
+                            </h5>
+                            <p class="newsContent"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var thisNewsId;
+        (function ($) {
+            var url = location.search; //获取url中"?"符后的字串
+            if (url.indexOf("?") !== -1) { //判断是否有参数
+                var str = url.substr(1); //获取所有除问号的所有符串
+                strs = str.split("=");  //用等号进行分隔
+                thisNewsId = strs[1];//取出第一个参数
+                $.ajax({
+                    type: "post",
+                    url: "index_findThisNews.action?time=new Date()",
+                    data: "thisNewsId=" + thisNewsId,
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        var mydata = eval(data);
+                        $('.newsTitle').html(mydata[0].newsTitle);
+                        $('.newsContent').html(mydata[0].newsContent);
+                        $('.newsKey').html(mydata[0].newsKey);
+                        $('.newsAuthor').html(mydata[0].newsAuthor);
+                        $(".newsImg").attr("src", "../img/" + mydata[0].newsImg);
+                        $('.newsDate').html(formatdate(mydata[0].newsDate));
+                    },
+                    error: function (data) {
+                        alert("Ajax请求崩了");
+                    }
+                });
+            }
+        })(jQuery);
+        function formatdate(value) {
+            var JsonDateValue = new Date(value.time);
+            return JsonDateValue.toLocaleDateString();
+        }
+    </script>
+
+    <!--评论-->
+    <section id="contact" class="space">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 contact-block">
+                    <div class="col-sm-12 main-heading">
+                        <h3>最新评论</h3>
+                    </div>
+                    <ul class="reviewul">
+                        <!--<li><i class="fa fa-user"></i> 郭峰 <i class="fa fa-comment"></i> Hello</li>-->
+                    </ul>
+                </div>
+                <div class="col-sm-6 contact-block">
+                    <div class="col-sm-12 main-heading">
+                        <h3><span class="userName2">未登录</span></h3>
+                    </div>
+                    <form id="cmtform">
+                        <div class="form-group col-sm-12 no-padding">
+                            <textarea class="form-control" name="comment" id="comment"
+                                      placeholder="请您登录后，发布评论!"></textarea>
+                        </div>
+                        <div class="col-sm-12 button no-padding">
+                            <input type="button" id="submit_comment" class="sppb-btn sppb-btn-default"
+                                   value="发布评论" onclick="commentAjax()">
+                            <div id="msg" class="message"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+
+        findReview();
+        function findReview() {
+            (function ($) {
+                $.ajax({
+                    type: "post",
+                    url: "cmt_findReview.action?",
+                    data: "cmtnewsid=" + thisNewsId,
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        var mydata = eval(data);
+                        $('.reviewul li').remove();
+                        for (var i in mydata) {
+                            $(".reviewul").append(
+                                " <li><i class='fa fa-user'></i> "
+                                + mydata[i].userPO.userName
+                                + " <i class='fa fa-comment'></i> "
+                                + mydata[i].cmtContent
+                                + " </li>"
+                            );
+                        }
+                    },
+                    error: function (data) {
+                        alert("Ajax请求崩了");
+                    }
+                });
+            })(jQuery);
+        }
+
+        function commentAjax() {
+            var userstr = $.cookie('news_user');
+            var userobject;
+            if (userstr === undefined || userstr === 'undefined') {
+                openLoginModal();
+            } else {
+                (function ($) {
+                    userobject = eval(userstr);
+                    var cmtContent = $("#comment").val();
+                    $.ajax({
+                        type: "post",
+                        url: "subcmt_addReview.action?",
+                        data: "newsId=" + thisNewsId + "&userId=" + userobject[0].userId + "&cmtContent=" + cmtContent,
+                        dataType: "json",
+                        cache: false,
+                        success: function (data) {
+                            findReview();
+                        },
+                        error: function (data) {
+                            $('.message').html("连接服务器失败，请稍后评论！");
+                        }
+                    });
+                })(jQuery);
+            }
+        }
+    </script>
+    <!--底部：信息-->
+    <section id="sp-bottom">
+        <div class="container">
+            <div class="row">
+                <div id="sp-bottom1" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title">联系方式</h3>
+                    <ul class="textwidget">
+                        <li><i class="fa fa-map-marker"><i class="hidden">地址</i></i>
+                            <span class="wsAddress"></span>
+                        </li>
+                        <li><i class="fa fa-envelope"></i> <span class="wsEmail"></span></li>
+                        <li><i class="fa fa-qq"></i> <span class="wsQq"></span></li>
+                        <li><i class="fa fa-phone"></i> <span class="wsPhone"></span></li>
+                    </ul>
+                </div>
+
+                <div id="sp-bottom2" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title">关键词</h3>
+                    <div class="tagspopular">
+                        <ul class="sitekeyul">
+                        </ul>
+                    </div>
+                </div>
+                <div id="sp-bottom3" class="col-sm-6 col-md-4">
+                    <h3 class="sp-module-title wsTitle"></h3>
+                    <ul class="textwidget">
+                        <li><i class="fa fa-newspaper-o"></i><span class="wsSite"></span></li>
+                        <li><i class="fa fa-book"></i><span class="wsDes"></span></li>
+                        <li><i class="fa fa-github"></i><span class="wsAdmin"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--底部：版权-->
+    <footer id="sp-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <p><span class="wsFootor"></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        findfooter();
+        function findfooter() {
+            (function ($) {
+                $.ajax({
+                    type: "post",
+                    url: "footer_findFooter.action",
+                    data: {
+                        //提交的数据
+                    },
+                    dataType: "json",
+                    cache: false,
+                    success: function (data) {
+                        var mydata = eval(data);
+                        $('.wsTitle').html(mydata[0].wsTitle);
+                        $('.wsSite').html(mydata[0].wsSite);
+                        $('.wsDes').html(mydata[0].wsDes);
+                        $('.wsAdmin').html(mydata[0].wsAdmin);
+                        $('.wsPhone').html(mydata[0].wsPhone);
+                        $('.wsQq').html(mydata[0].wsQq);
+                        $('.wsEmail').html(mydata[0].wsEmail);
+                        $('.wsAddress').html(mydata[0].wsAddress);
+                        $('.wsFootor').html(mydata[0].wsFootor);
+                        var keyarr = mydata[0].wsKey.split('，');
+                        for (var i in keyarr) {
+                            $(".sitekeyul").append(
+                                "<li><a href='' target='_parent'>"
+                                + keyarr[i]
+                                + "</a></li>"
+                            );
+                        }
+                    },
+                    error: function (data) {
+                        alert("Ajax请求崩了");
+                    }
+                });
+            })(jQuery);
+        }
+        getCookie();
+    </script>
+
+    <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="box">
+                        <div class="content">
+                            <div class="error"></div>
+                            <div class="form loginBox">
+                                <form method="post" action="" accept-charset="UTF-8">
+                                    <input id="loginid" class="form-control" type="text" placeholder="请输入账户"
+                                           name="userid">
+                                    <input id="loginpwd" class="form-control" type="password" placeholder="请输入密码"
+                                           name="password">
+                                    <input class="btn btn-default btn-login" type="button" value="登录"
+                                           onclick="loginAjax()">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="content registerBox" style="display:none;">
+                            <div class="form">
+                                <form method="post" data-remote="true" action="" accept-charset="UTF-8">
+                                    <input id="regid" class="form-control" type="text" placeholder="请输入5位数字账户"
+                                           name="userid">
+                                    <input id="regname" class="form-control" type="text" placeholder="请输入昵称"
+                                           name="username">
+                                    <input id="regpwd" class="form-control" type="password" placeholder="请输入5~15位密码"
+                                           name="password">
+                                    <input class="btn btn-default btn-register" type="button" value="创建账户"
+                                           onclick="regAjax()">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class=" modal-footer">
+                    <div class="forgot login-footer">
+                        <span><a href="javascript: showRegisterForm();">创建账户</a></span>
+                    </div>
+                    <div class="forgot register-footer" style="display:none">
+                        <span>已经注册过账户?<a href="javascript: showLoginForm();">登录</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--All Script-->
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+</div>
+</body>
+</html>

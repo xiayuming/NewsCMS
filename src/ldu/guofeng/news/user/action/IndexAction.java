@@ -36,14 +36,22 @@ public class IndexAction extends ActionSupport {
         return SUCCESS;
     }
 
+    private void restrat() {
+        hotCurrentPage = 0;
+        societyCurrentPage = 0;
+        techCurrentPage = 0;
+        inteCurrentPage = 0;
+        miliCurrentPage = 0;
+    }
 
     public String findHeadNews() {
+        restrat();
         root = JSONArray.fromObject(indexService.findNewsOfHead());
         return SUCCESS;
     }
 
     public String findHotNews() {
-        int pageCount = 2;
+        int pageCount = 5;
         int pageSize = indexService.PageSizeOfHot(pageCount);
         if (hotCurrentPage < pageSize) {
             hotCurrentPage++;
@@ -55,7 +63,7 @@ public class IndexAction extends ActionSupport {
     }
 
     public String findSocietyNews() {
-        int pageCount = 2;
+        int pageCount = 5;
         int pageSize = indexService.PageSizeOfSociety(pageCount);
         if (societyCurrentPage < pageSize) {
             societyCurrentPage++;
@@ -67,7 +75,7 @@ public class IndexAction extends ActionSupport {
     }
 
     public String findTechNews() {
-        int pageCount = 2;
+        int pageCount = 5;
         int pageSize = indexService.PageSizeOfTech(pageCount);
         if (techCurrentPage < pageSize) {
             techCurrentPage++;
@@ -79,7 +87,7 @@ public class IndexAction extends ActionSupport {
     }
 
     public String findInteNews() {
-        int pageCount = 2;
+        int pageCount = 5;
         int pageSize = indexService.PageSizeOfInte(pageCount);
         if (inteCurrentPage < pageSize) {
             inteCurrentPage++;
@@ -91,7 +99,7 @@ public class IndexAction extends ActionSupport {
     }
 
     public String findMiliNews() {
-        int pageCount = 2;
+        int pageCount = 5;
         int pageSize = indexService.PageSizeOfMili(pageCount);
         if (miliCurrentPage < pageSize) {
             miliCurrentPage++;

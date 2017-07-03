@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/newssystem"/>
+        <property name="user" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+    <!--配置 hibernate-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--注入连接池-->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>ldu.guofeng.news.admin.domain</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/newssystem</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+            </props>
+        </property>
+    </bean>
+    <!--配置事务管理器-->
+    <bean id="tansactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--开启注解事务-->
+    <tx:annotation-driven transaction-manager="tansactionManager"/>
+
+    <!--User -->
+    <bean class="ldu.guofeng.news.admin.action.UserAction" id="userAction">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.UserDaoImpl" id="userDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--news-->
+    <bean class="ldu.guofeng.news.admin.action.NewsAction" id="newsAction">
+        <property name="newsService" ref="newsService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.NewsServiceImpl" id="newsService">
+        <property name="newsDao" ref="newsDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.NewsDaoImpl" id="newsDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--headnews-->
+    <bean class="ldu.guofeng.news.admin.action.HeadNewsAction" id="headNewsAction">
+        <property name="headNewsService" ref="headNewsService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.HeadNewsServiceImpl" id="headNewsService">
+        <property name="headNewsDao" ref="headNewsDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.HeadNewsDaoImpl" id="headNewsDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--comment-->
+    <bean class="ldu.guofeng.news.admin.action.CommentAction" id="commentAction">
+        <property name="commentService" ref="commentService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.CommentServiceImpl" id="commentService">
+        <property name="commentDao" ref="commentDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.CommentDaoImpl" id="commentDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--countinfo-->
+    <bean class="ldu.guofeng.news.admin.action.CountInfoAction" id="countInfoAction">
+        <property name="countInfoService" ref="countInfoService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.CountInfoServiceImpl" id="countInfoService">
+        <property name="countInfoDao" ref="countInfoDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.CountInfoDaoImpl" id="countInfoDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--siteinfo -->
+    <bean class="ldu.guofeng.news.admin.action.SiteInfoAction" id="siteInfoAction">
+        <property name="siteInfoService" ref="siteInfoService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.service.impl.SiteInfoServiceImpl" id="siteInfoService">
+        <property name="siteInfoDao" ref="siteInfoDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.admin.dao.impl.SiteInfoDaoImpl" id="siteInfoDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--======================================-->
+
+    <!--index -->
+    <bean class="ldu.guofeng.news.user.action.IndexAction" id="indexAction">
+        <property name="indexService" ref="indexService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.service.impl.IndexServiceImpl" id="indexService">
+        <property name="indexDao" ref="indexDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.dao.impl.IndexDaoImpl" id="indexDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--footer -->
+    <bean class="ldu.guofeng.news.user.action.FooterAction" id="footerAction">
+        <property name="footerService" ref="footerService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.service.impl.FooterServiceImpl" id="footerService">
+        <property name="footerDao" ref="footerDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.dao.impl.FooterDaoImpl" id="footerDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--login reg -->
+    <bean class="ldu.guofeng.news.user.action.LoginRegAction" id="loginRegAction">
+        <property name="loginRegService" ref="loginRegService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.service.impl.LoginRegServiceImpl" id="loginRegService">
+        <property name="loginRegDao" ref="loginRegDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.dao.impl.LoginRegDaoImpl" id="loginRegDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- review -->
+    <bean class="ldu.guofeng.news.user.action.ReviewAction" id="reviewAction">
+        <property name="reviewService" ref="reviewService"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.service.impl.ReviewServiceImpl" id="reviewService">
+        <property name="reviewDao" ref="reviewDao"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.dao.impl.ReviewDaoImpl" id="reviewDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean class="ldu.guofeng.news.user.action.SubmitCmtAction" id="submitCmtAction">
+        <property name="reviewService" ref="reviewService"/>
+    </bean>
+</beans>
